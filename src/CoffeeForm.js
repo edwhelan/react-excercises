@@ -8,10 +8,22 @@ class CoffeeForm extends Component {
       coffee: '',
       email: '',
       size: '',
-      flavour: '',
+      flavor: '',
       strength: '',
       list: []
     };
+  }
+
+  componentDidMount() {
+    console.log(`about to do the thing`)
+    fetch('https://dc-coffeerun.herokuapp.com/api/coffeeOrders')
+      .then(r => r.json())
+      .then(coffeeArray => {
+        console.table(Object.values(coffeeArray))
+        this.setState({
+          list: Object.values(coffeeArray)
+        })
+      })
   }
 
   render() {
@@ -32,11 +44,11 @@ class CoffeeForm extends Component {
           </label>
           <br />
           <label>
-            Flavour: <input value={this.state.flavour} onChange={this._onChangeFlavour} type='text' name='flavour' placeholder='Ex. Chocolate' required></input>
+            Flavor: <input value={this.state.flavor} onChange={this._onChangeFlavor} type='text' name='flavor' placeholder='Ex. Chocolate' required></input>
           </label>
           <br />
           <label>
-            Strength: <input value={this.state.strength} onChange={this._onChangeStrength} type='text' name='strength' placeholder='Ex. Jet-fuel' required></input>
+            Strength: <input value={this.state.strength} onChange={this._onChangeStrength} min="0" max="100" type='number' name='strength' placeholder='0-99' required></input>
           </label>
           <br />
           <input type='submit' />
@@ -64,10 +76,10 @@ class CoffeeForm extends Component {
       size: event.target.value
     })
   }
-  _onChangeFlavour = (event) => {
+  _onChangeFlavor = (event) => {
     console.log(event)
     this.setState({
-      flavour: event.target.value
+      flavor: event.target.value
     })
   }
   _onChangeStrength = (event) => {
@@ -78,10 +90,15 @@ class CoffeeForm extends Component {
   }
   _onSubmit = (event) => {
     event.preventDefault()
+
+
+
+
+
     let newItem = {
       coffee: this.state.coffee,
       email: this.state.email,
-      flavour: this.state.flavour,
+      flavour: this.state.flavor,
       size: this.state.size,
       strength: this.state.strength
     }
@@ -89,7 +106,7 @@ class CoffeeForm extends Component {
       list: [...this.state.list, newItem],
       coffee: '',
       email: '',
-      flavour: '',
+      flavor: '',
       size: '',
       strength: ''
     })

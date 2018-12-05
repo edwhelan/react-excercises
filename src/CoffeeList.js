@@ -6,7 +6,7 @@ const CoffeeList = (props) => {
       <h2>coffee comes out here</h2>
       <ul className='coffee-list'>
         {props.items.map((item, index) => {
-          return <li key={index}>CoffeeOrder # {index + 1} : {item.size} {item.coffee} {item.flavour} {item.strength} for {item.email}</li>
+          return <li key={index}>CoffeeOrder # {index + 1} : {item.size} {item.coffee} {item.flavor} {item.strength} for {item.email}</li>
         })}
       </ul>
     </div>

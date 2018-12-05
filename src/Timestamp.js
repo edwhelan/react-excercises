@@ -4,30 +4,29 @@ class Timestamp extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      term: '',
       items: []
     };
   }
   render() {
     return (
-      <div>click to add to timer
+      <div className='App'><h1>click to add to timer</h1>
         <form onSubmit={this._onSubmit}>
+          <button type='submit'>ADD TIME</button>
           <ul>
             {this.state.items.map((item) => {
               return <li>{item}</li>
             })}
           </ul>
-          <button type='submit'>ADD TIME</button>
         </form>
       </div>
     )
   }
 
   _onSubmit = (event) => {
+    let newDate = Date();
     event.preventDefault();
     this.setState({
-      term: '',
-      items: [...this.state.items, this.state.term = Date()]
+      items: [...this.state.items, newDate]
     })
     console.log(Date())
   }

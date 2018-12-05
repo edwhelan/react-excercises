@@ -91,25 +91,44 @@ class CoffeeForm extends Component {
   _onSubmit = (event) => {
     event.preventDefault()
 
-
-
-
-
-    let newItem = {
-      coffee: this.state.coffee,
-      email: this.state.email,
-      flavour: this.state.flavor,
-      size: this.state.size,
-      strength: this.state.strength
-    }
-    this.setState({
-      list: [...this.state.list, newItem],
-      coffee: '',
-      email: '',
-      flavor: '',
-      size: '',
-      strength: ''
+    fetch('https://dc-coffeerun.herokuapp.com/api/coffeeOrders', {
+      method: 'POST',
+      body: JSON.stringify({
+        coffee: this.state.coffee,
+        emailAddress: this.state.email,
+        flavor: this.state.flavor,
+        size: this.state.size,
+        strength: this.state.strength
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
     })
+      .then(r => r.json())
+      .then(coffeeStuff => {
+        console.log(`this is your coffeeStuff : ${typeof (Object.values(coffeeStuff))}`)
+        let mutatedCoffee = Object.values(coffeeStuff)
+        let newItem = {
+          coffee: coffeeStuff.coffee,
+          emailAddress: coffeeStuff.emailAddress,
+          flavor: coffeeStuff.flavor,
+          size: coffeeStuff.size,
+          strength: coffeeStuff.strength
+        }
+        this.setState({
+          list: [...this.state.list, newItem],
+          coffee: '',
+          email: '',
+          flavor: '',
+          size: '',
+          strength: ''
+        })
+      })
+
+
+
+
+
   }
 
 }

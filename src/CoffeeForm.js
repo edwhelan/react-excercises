@@ -106,8 +106,6 @@ class CoffeeForm extends Component {
     })
       .then(r => r.json())
       .then(coffeeStuff => {
-        console.log(`this is your coffeeStuff : ${typeof (Object.values(coffeeStuff))}`)
-        let mutatedCoffee = Object.values(coffeeStuff)
         let newItem = {
           coffee: coffeeStuff.coffee,
           emailAddress: coffeeStuff.emailAddress,

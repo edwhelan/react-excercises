@@ -18,6 +18,16 @@ import OneCat from './OneCat'
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      catList: [
+        'Alice',
+        'Edith',
+        'Toby'
+      ]
+    }
+  }
   render() {
     return (
       <Router>
@@ -26,7 +36,9 @@ class App extends Component {
           {/* <Route path='/' component={Navbar} /> */}
           <Route path='/' exact component={Home} />
           <Route path='/about' component={About} />
-          <Route path='/cats' component={Cats} />
+          <Route path='/cats' render={(props) => {
+            return <Cats catList={this.state.catList}  {...props} />
+          }} />
           <Route path='/cats/:catName' component={OneCat} />
           <Timestamp />
           <SearchBar />

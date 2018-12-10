@@ -17,11 +17,6 @@ const Navbar = (props) => {
       </li>
       <li><Link to='/about'>About</Link></li>
       <li><Link to='/cats'>Cats </Link>
-        <ul>
-          <li><Link to='/cats/1cat'>1</Link></li>
-          <li><Link to='/cats/2cat'>2</Link></li>
-          <li><Link to='/cats/3cat'>3</Link></li>
-        </ul>
       </li>
     </ul>
   )

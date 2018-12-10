@@ -4,9 +4,6 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import Home from './Home';
-import About from './About';
-import Cats from './Cats';
 
 
 const Navbar = (props) => {
@@ -16,8 +13,8 @@ const Navbar = (props) => {
         <Link to='/'>Home</Link>
       </li>
       <li><Link to='/about'>About</Link></li>
-      <li><Link to='/cats'>Cats </Link>
-      </li>
+      <li><Link to='/cats'>Cats </Link></li>
+      <li><Link to='/adventurers'>Adventurers</Link></li>
     </ul>
   )
 }
